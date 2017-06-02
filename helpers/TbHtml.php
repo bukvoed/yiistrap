@@ -749,6 +749,15 @@ class TbHtml extends CHtml // required in order to access the protected methods 
         self::addColClass($htmlOptions);
         self::addPullClass($htmlOptions);
         self::addTextAlignClass($htmlOptions);
+        if ($tag=='a') {
+            /*foreach($htmlOptions as $k=>$v){
+                if (!isset($htmlOptions['linkOptions'][$k])) $htmlOptions['linkOptions'][$k] = $v;
+            }*/
+            if (isset($htmlOptions['class'])) $htmlOptions['linkOptions']['class'] = $htmlOptions['class'];
+            if (isset($htmlOptions['href'])) $htmlOptions['linkOptions']['href'] = $htmlOptions['href'];
+            if (isset($htmlOptions['target'])) $htmlOptions['linkOptions']['target'] = $htmlOptions['target'];
+            return parent::link($content,$htmlOptions['href'],isset($htmlOptions['linkOptions'])?$htmlOptions['linkOptions']:array());
+        }
         return parent::tag($tag, $htmlOptions, $content, $closeTag);
     }
 
@@ -2890,6 +2899,7 @@ EOD;
     {
         $htmlOptions['href'] = parent::normalizeUrl($url);
         self::clientChange('click', $htmlOptions);
+        //return parent::link($text,$htmlOptions['href'],$htmlOptions);
         return self::tag('a', $htmlOptions, $text);
     }
 
@@ -3383,6 +3393,7 @@ EOD;
             );
             $output = self::openTag('div', $htmlOptions);
             foreach ($buttons as $buttonOptions) {
+
                 if (isset($buttonOptions['visible']) && $buttonOptions['visible'] === false) {
                     continue;
                 }
