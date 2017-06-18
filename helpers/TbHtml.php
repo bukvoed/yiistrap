@@ -1,6 +1,6 @@
 <?php
 /**
- * TbHtml class file.
+ * TbHtml class file with patches.
  * @author Antonio Ramirez <ramirez.cobos@gmail.com>
  * @author Christoffer Niska <christoffer.niska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2013-
